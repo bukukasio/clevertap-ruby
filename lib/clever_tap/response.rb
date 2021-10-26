@@ -3,7 +3,11 @@ class CleverTap
     attr_accessor :response, :success, :failures
 
     def initialize(response)
-      @response = JSON.parse(response.body)
+      begin
+        @response = JSON.parse(response.body)
+      rescue JSON::ParserError, TypeError => e
+        @response = { non_json_resp: response.body }
+      end
       process_response
     end
 

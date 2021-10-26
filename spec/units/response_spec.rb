@@ -57,7 +57,7 @@ describe CleverTap::Response do
       let(:response) { OpenStruct.new(body: non_json) }
 
       it { expect(subject.success).to be false }
-      it { expect(subject.failures).to eq [{non_json_resp: non_json}] }
+      it { expect(subject.failures).to eq [{resp_string: non_json.to_s}] }
     end
   end
 end

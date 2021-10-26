@@ -6,7 +6,7 @@ class CleverTap
       begin
         @response = JSON.parse(response.body)
       rescue JSON::ParserError, TypeError => e
-        @response = { non_json_resp: response.body }
+        @response = { resp_string: response.body.to_s }
       end
       process_response
     end
